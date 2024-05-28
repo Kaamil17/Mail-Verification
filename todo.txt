@@ -1,0 +1,28 @@
+Building an Api basically
+- it has three controllers for now
+
+- API: POST (EndPoints: POST /user/register)
+
+    - Create a random verificationToken Method   (Alphanumeric).
+    - In POST we save the  { name, email, verificationToken, isVerified } in the mongoDb database.
+    - Sending verificationToken to user's email address
+    
+    
+- API: GET (EndPoints:   /user/verify-email/{username}/{verificationToken})
+    - Get the URL parameters -> username, verificationToken (Remember params)
+    - Getting the record from the database using the username.
+    - If not find give 404 error response.
+    - Check verificationToken in url parameter is equal to the database record.
+    - If it wasn’t equal, return 400 bad request response.
+    - Set isVerified=true in database record of the user
+    - return success response
+
+
+
+- API: GET (EndPoints: username) (basically verification checking)
+    - get the username from the url ( remember the params like express.js) 
+    - If username not in the database then go not found 404.
+    - Check the isVerified of the given username. If true send userIsVerified. If false then "user is not verified"
+    - 
+
+
