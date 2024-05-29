@@ -1,6 +1,6 @@
 # BEIJE-TASK
 
-# CHATGPT Chats for the assistance (https://chatgpt.com/share/ecc8fd0c-2780-45b3-a47a-3ebe3f4e4b15)
+# CHATGPT Chats for the assistance (https://chatgpt.com/c/d782cfa0-af08-4e88-82da-14fa0456ec21)
 
 This project is a NestJS application that demonstrates user registration, email verification, and verification status checking functionalities using MongoDB and Nodemailer.
 
