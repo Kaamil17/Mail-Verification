@@ -15,6 +15,7 @@ import envKeys from '../config/env-keys';
 export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
+  // create the user
   async create(createUserDto: CreateUserDto): Promise<User> {
     const verificationToken = this.createVerificationToken();
     const createdUser = new this.userModel({
@@ -26,10 +27,12 @@ export class UserService {
     return createdUser.save();
   }
 
+  // token generator using the crypto lib
   private createVerificationToken(): string {
     return crypto.randomBytes(16).toString('hex');
   }
 
+  // sending the token the to email
   private async sendVerificationEmail(
     email: string,
     token: string,
@@ -37,7 +40,7 @@ export class UserService {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        // write the email and password in the env-keys.ts  (api-task\src\user\config)
+        // write the email and password in the env-keys.ts  (api-task\src\user\config\env-keys.ts)
         user: envKeys.email.emailAddress,
         pass: envKeys.email.password,
       },
@@ -54,6 +57,8 @@ export class UserService {
     await transporter.sendMail(mailOptions);
   }
 
+  // this funcitons below takes care of the email verification and checking the tokens and
+  // the username
   async verifyEmail(
     username: string,
     verificationToken: string,
@@ -72,6 +77,7 @@ export class UserService {
     await user.save();
   }
 
+  // check if the user is verified or not
   async checkVerification(username: string): Promise<string> {
     const user = await this.userModel.findOne({ username }).exec();
 

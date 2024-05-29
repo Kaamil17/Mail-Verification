@@ -1,4 +1,4 @@
-import envKeys from '../config/config-keys';
+import envKeys from './user/config/env-keys';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
